@@ -35,7 +35,7 @@ In our experiments, we utilized a single machine to run both the Email Server an
 navigate to the [EmailServer directory](../../FlowSteering/ApplicationCode/EmailServer/) and edit the [EmailServer.py](../../FlowSteering/ApplicationCode/EmailServer/EmailServer.py) 
 file to set the server configuration. 
 
-```
+```python
 SERVER_HOST = '0.0.0.0' # Change this to the IP address of the machine where the Email Server will run
 SERVER_PORT = 1234 # Change this to the port where the Email Server will listen
 saveMail_directory = "FlowSteering/ApplicationCode/EmailServer/EmailServerMailDatabase"  # Change this to the directory where you want to save the emails inbox for each user
@@ -50,7 +50,7 @@ We encountered some network issues when sending images through the socket, parti
 #### The Email server can handle two requests from the End User Clients:
 * **CHECK_INBOX**: This command is used to check the inbox of the user and send the email to the client
 * **SEND_EMAIL**: This command is used to save a new email to the recipient's inbox
-```
+```python
 def handle_messages():
      if Command == "CHECK_INBOX":
                 print("Checking Inbox")
@@ -64,7 +64,7 @@ def handle_messages():
 
 
 #### To run the Email Server execute the following command in the EmailServer directory
-```
+```bash
 python3 EmailServer.py
 ```
 
@@ -73,7 +73,7 @@ python3 EmailServer.py
 navigate to the [LLaVaServer directory](../../FlowSteering/ApplicationCode/LLaVaServer) and edit the [LLaVaServer.py](../../FlowSteering/ApplicationCode/LLaVaServer/LLaVaServer.py)
 file to set the server configuration. 
 
-```
+```python
 SERVER_HOST = '0.0.0.0' # Change this to the IP address of the machine where the LLaVa Server will run
 SERVER_PORT = 1025 # Change this to the port where the LLaVa Server will listen
 saveMail_directory = "FlowSteering/ApplicationCode/LLaVaServer/EmailLLaVaMailDatabase" # Change this to the directory where you want to save the images sent to the LLaVa Server
@@ -86,7 +86,7 @@ The LLaVa server will listen for incoming connections from the End User Clients,
 #### The LLaVa server can handle one request from the End User Clients:
 * **CHECK_EMAIL**: This command is used to request the LLaVa server to send the email to the LLaVa model for classification.
 
-```
+```python
 def handle_messages():
      if Command == "CHECK_EMAIL": 
                 print("Sending the Email to LLaVa model for classification")
@@ -97,7 +97,7 @@ def handle_messages():
 
 
 #### To run the LLaVa Server execute the following command in the LLaVaServer directory
-```
+```bash
 python3 LLaVaServer.py
 ```
 
@@ -111,7 +111,7 @@ You can find an example of the CSV file named: [EndUserBaseEmails.csv](../../Flo
 The function responsible for reading this CSV file is located in the [EndUserClient.py](../../FlowSteering/ApplicationCode/EndUserCode/EndUserClient.py) file under the respective function.
 
 
-```
+```python
 def read_emails_from_file():
 ```
 
@@ -120,7 +120,7 @@ def read_emails_from_file():
 The script for each End User Client runs in a loop, sending a request to the Email Server to check the inbox for new emails every 10-20 seconds.
 
 
-```
+```python
 def main():
     while True:
         time.sleep(random.randint(10, 20))
@@ -144,7 +144,7 @@ For our experiments, we implemented the action "Forward" and left the other acti
 
 
 
-```
+```python
  if Classification == 'reply':
         print('Manual action is required for replying to this email, so it will be transferred to the Manual Folder.')
         pass
@@ -163,7 +163,7 @@ For our experiments, we implemented the action "Forward" and left the other acti
 
 
 #### To run the End User Client execute the following command in the EndUserCode directory and replace the configurations of the server and the user with your own configurations
-```
+```bash
 python3 EndUserClient.py --SERVER_EMAIL_HOST 111.88.88.33 --SERVER_EMAIL_PORT 1234 --SERVER_LLAVA_HOST 111.55.55.33 --SERVER_LLAVA_PORT 1025 --MYEMAIL Person1@example.com --saveMail_directory "FlowSteering/ApplicationCode/EndUserCode/EndUserPersonalEmailDir" --BaseEmails_directory "FlowSteering/ApplicationCode/EndUserCode/EndUserClientBaseEmails/EndUserBaseEmails.csv" --CycleNewEmails True --default_image "FlowSteering/assets/PerturbatedImages/DjiPerturbClassForward.png" 
 ```
 
@@ -177,7 +177,7 @@ This code is a simplified version of the End User Client, used solely to send th
 
 
 Configure the following variables to send the email:
-``` 
+``` python
 def main():
     ...
     subject = "Black Friday Deal!"
@@ -189,7 +189,7 @@ def main():
 
 Next, the Attacker Client will send two identical emails to the Email Server, with recipient1 and recipient2 as the recipients.
 
-```    
+```python
     response = send_Email(Command, sender, recipient1, subject, body, attachment_path, SERVER_EMAIL_HOST,
                           SERVER_EMAIL_PORT)
     response = send_Email(Command, sender, recipient2, subject, body, attachment_path, SERVER_EMAIL_HOST,
@@ -200,7 +200,7 @@ Next, the Attacker Client will send two identical emails to the Email Server, wi
 
 
 #### To run the Attacker Client execute the following command in the EndUserCode directory and replace the configurations of the server and the user with your own configurations
-```
+```bash
 python3 AttackerClient.py --SERVER_EMAIL_HOST 111.88.88.33 --SERVER_EMAIL_PORT 1234 --SERVER_LLAVA_HOST 111.55.55.33 --SERVER_LLAVA_PORT 1025 --MYEMAIL Attacker@example.com 
 ```
 
