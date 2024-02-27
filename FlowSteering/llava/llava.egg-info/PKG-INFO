@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: llava
+Version: 1.0.1
+Summary: Towards GPT-4 like large language and visual assistant.
+Project-URL: Homepage, https://llava-vl.github.io
+Project-URL: Bug Tracker, https://github.com/haotian-liu/LLaVA/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: einops
+Requires-Dist: fastapi
+Requires-Dist: gradio==3.35.2
+Requires-Dist: markdown2[all]
+Requires-Dist: numpy
+Requires-Dist: requests
+Requires-Dist: sentencepiece
+Requires-Dist: tokenizers>=0.12.1
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: uvicorn
+Requires-Dist: wandb
+Requires-Dist: shortuuid
+Requires-Dist: httpx==0.24.0
+Requires-Dist: deepspeed==0.9.5
+Requires-Dist: peft==0.4.0
+Requires-Dist: transformers==4.31.0
+Requires-Dist: accelerate==0.21.0
+Requires-Dist: bitsandbytes==0.41.0
+Requires-Dist: scikit-learn==1.2.2
+Requires-Dist: sentencepiece==0.1.99
+Requires-Dist: einops==0.6.1
+Requires-Dist: einops-exts==0.0.4
+Requires-Dist: timm==0.6.13
+Requires-Dist: gradio_client==0.2.9
+Requires-Dist: ipykernel
